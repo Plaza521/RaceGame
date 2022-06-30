@@ -44,16 +44,18 @@ class Car:
 				self.self_spd += SPEED
 		self.x += cos_a * self.self_spd
 		self.y += sin_a * self.self_spd
-		if keys[BACK] and keys[LEFT]:
-			self.angle+=SPD_T
-		elif keys[LEFT]:
-			self.angle-=SPD_T
-		if keys[BACK] and keys[RIGHT]:
-			self.angle-=SPD_T
-		elif keys[RIGHT]:
-			self.angle+=SPD_T
+		if keys[LEFT]:
+			if self.self_spd>=0:
+				self.angle-=SPD_T
+			else:
+				self.angle+=SPD_T
+		if keys[RIGHT]:
+			if self.self_spd>=0:
+				self.angle+=SPD_T
+			else:
+				self.angle-=SPD_T
 
 	def render(self,scr):
-		pg.draw.line(scr,SANDY,(self.x,self.y),(self.x+math.cos(self.angle)*40,
-											  self.y+math.sin(self.angle)*40))
-		pg.draw.circle(scr,BLACK,(self.x,self.y),6)
+		pg.draw.line(scr,SANDY,(WIDTH//2,HEIGHT//2),(WIDTH//2+math.cos(self.angle)*40,
+											   		 HEIGHT//2+math.sin(self.angle)*40))
+		pg.draw.circle(scr,BLACK,(WIDTH//2,HEIGHT//2),6)

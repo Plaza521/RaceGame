@@ -1,7 +1,9 @@
 import pygame as pg
 # Game settings
-WIDTH  = 800
-HEIGHT = 600
+WIDTH  = 1000
+HEIGHT = 800
+H_WIDTH  = WIDTH//2
+H_HEIGHT = HEIGHT//2
 FPS    = 30
 
 # Colors
@@ -23,18 +25,22 @@ BACK    = pg.K_s
 LEFT    = pg.K_a
 RIGHT   = pg.K_d
 SPEED   = 1
-SPD_T   = 0.1
+SPD_T   = 0.05
 
 # Textures
+EMPTY  = pg.image.load('img/0.bmp')
 FILLED = pg.image.load('img/1.bmp')
-LL     = pg.image.load('img/2.bmp')
-UL     = pg.image.load('img/3.bmp')
-UR     = pg.image.load('img/4.bmp')
-LR     = pg.image.load('img/5.bmp')
-EMPTY  = pg.image.load('img/6.bmp')
+LLO    = pg.image.load('img/2.bmp')
+ULO    = pg.image.load('img/3.bmp')
+URO    = pg.image.load('img/4.bmp')
+LRO    = pg.image.load('img/5.bmp')
+LLI    = pg.image.load('img/6.bmp')
+ULI    = pg.image.load('img/7.bmp')
+URI    = pg.image.load('img/8.bmp')
+LRI    = pg.image.load('img/9.bmp')
 
 
 # Map settings
 SIZE_OF_BLOCK = 40
-
-# 800x600 with SOB=40 -  20x15 blocks
+HALF_OF_BLOCK = SIZE_OF_BLOCK / 2
+QUAD_OF_BLOCK = SIZE_OF_BLOCK / 4

@@ -22,91 +22,94 @@ def main():
 		for i in range(len(game_map)):
 			for j in range(len(game_map[i])):
 				x,y = j,i
+				ypmult, ymult = (y+1)*SIZE_OF_BLOCK, y*SIZE_OF_BLOCK
+				xpmult, xmult = (x+1)*SIZE_OF_BLOCK, x*SIZE_OF_BLOCK
 				if   game_map[i][j]=='#':
-					pg.draw.rect(scr,BLACK,(j*SIZE_OF_BLOCK+player.x,i*SIZE_OF_BLOCK+player.y,
+					pg.draw.rect(scr,BLACK,(xmult+player.x,ymult+player.y,
 											SIZE_OF_BLOCK,SIZE_OF_BLOCK))
 				elif game_map[i][j]=='1':
-					scr.blit(FILLED, (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					scr.blit(FILLED, (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
+					if ypmult > player.y > ymult and xpmult > player.x > xmult:
 						is_collision = True
 				elif game_map[i][j]=='2':
-					scr.blit(LLO,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
-					if (y+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4:
+					scr.blit(LLO,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
+					if ypmult - QUAD_OF_BLOCK > player.y > ymult + QUAD_OF_BLOCK and xpmult - QUAD_OF_BLOCK > player.x > xmult + QUAD_OF_BLOCK:
 						is_collision = True # Lower wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK:
+					if ypmult > player.y > ymult and xmult + QUAD_OF_BLOCK > player.x > xmult:
 						is_collision = True # Left wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > (y+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ypmult > player.y > ypmult - QUAD_OF_BLOCK and xpmult > player.x > xmult:
 						is_collision = True # Square in center
 				elif game_map[i][j]=='3':
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK:
+					if ypmult > player.y > ymult and xmult + QUAD_OF_BLOCK > player.x > xmult:
 						is_collision = True # Left wall
-					if y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ymult + QUAD_OF_BLOCK > player.y > ymult and xpmult > player.x > xmult:
 						is_collision = True # Upper wall
-					if (y+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4:
+					if ypmult - QUAD_OF_BLOCK > player.y > ymult + QUAD_OF_BLOCK and xpmult - QUAD_OF_BLOCK > player.x > xmult + QUAD_OF_BLOCK:
 						is_collision = True # Square in center
-					scr.blit(ULO,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
+					scr.blit(ULO,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 				elif game_map[i][j]=='4':
-					if y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ymult + QUAD_OF_BLOCK > player.y > ymult and xpmult > player.x > xmult:
 						is_collision = True # Upper wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4:
+					if ypmult > player.y > ymult and xpmult > player.x > xpmult - QUAD_OF_BLOCK:
 						is_collision = True # Right wall
-					if (y+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4:
+					if ypmult - QUAD_OF_BLOCK > player.y > ymult + QUAD_OF_BLOCK and xpmult - QUAD_OF_BLOCK > player.x > xmult + QUAD_OF_BLOCK:
 						is_collision = True # Square in center
-					scr.blit(URO,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
+					scr.blit(URO,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 				elif game_map[i][j]=='5':
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4:
+					if ypmult > player.y > ymult and xpmult > player.x > xpmult - QUAD_OF_BLOCK:
 						is_collision = True # Right wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > (y+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ypmult > player.y > ypmult-QUAD_OF_BLOCK and xpmult > player.x > xmult:
 						is_collision = True # Lower wall
-					if (y+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4:
+					if ypmult - QUAD_OF_BLOCK > player.y > ymult + QUAD_OF_BLOCK and xpmult - QUAD_OF_BLOCK > player.x > xmult + QUAD_OF_BLOCK:
 						is_collision = True # Square in center
-					scr.blit(LRO,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
+					scr.blit(LRO,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 				elif game_map[i][j]=='6':
-					scr.blit(LLI,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK:
+					scr.blit(LLI,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
+					if ypmult > player.y > ymult and xmult + QUAD_OF_BLOCK > player.x > xmult:
 						is_collision = True # Left wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > (y+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ypmult > player.y > ypmult-QUAD_OF_BLOCK and xpmult > player.x > xmult:
 						is_collision = True # Lower wall
-					if (y+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2 and x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/2 > player.x > x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4:
+					if ypmult-QUAD_OF_BLOCK > player.y > ymult+HALF_OF_BLOCK and xmult + HALF_OF_BLOCK > player.x > xmult + QUAD_OF_BLOCK:
 						is_collision = True # Dot in center
 				elif game_map[i][j]=='7':
-					scr.blit(ULI,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and x*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK:
+					scr.blit(ULI,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
+					if ypmult > player.y > ymult and xmult + QUAD_OF_BLOCK > player.x > xmult:
 						is_collision = True # Left wall
-					if y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ymult + QUAD_OF_BLOCK > player.y > ymult and xpmult > player.x > xmult:
 						is_collision = True # Upper wall
-					if y*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2 > player.y > y*SIZE_OF_BLOCK+SIZE_OF_BLOCK/4 and x*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2 > player.x > x*SIZE_OF_BLOCK+SIZE_OF_BLOCK/4:
+					if ymult+HALF_OF_BLOCK > player.y > ymult+QUAD_OF_BLOCK and xmult+HALF_OF_BLOCK > player.x > xmult+QUAD_OF_BLOCK:
 						is_collision = True # Dot in center
 				elif game_map[i][j]=='8':
-					if y*SIZE_OF_BLOCK + SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ymult + QUAD_OF_BLOCK > player.y > ymult and xpmult > player.x > xmult:
 						is_collision = True # Upper wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4:
+					if ypmult > player.y > ymult and xpmult > player.x > xpmult - QUAD_OF_BLOCK:
 						is_collision = True # Right wall
-					if y*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2 > player.y > y*SIZE_OF_BLOCK+SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2:
+					if ymult+HALF_OF_BLOCK > player.y > ymult+QUAD_OF_BLOCK and xpmult-QUAD_OF_BLOCK > player.x > xmult+HALF_OF_BLOCK:
 						is_collision = True # Dot in center
-					scr.blit(URI,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
+					scr.blit(URI,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 				elif game_map[i][j]=='9':
-					if (y+1)*SIZE_OF_BLOCK > player.y > y*SIZE_OF_BLOCK and (x+1)*SIZE_OF_BLOCK > player.x > (x+1)*SIZE_OF_BLOCK - SIZE_OF_BLOCK/4:
+					if ypmult > player.y > ymult and xpmult > player.x > xpmult - QUAD_OF_BLOCK:
 						is_collision = True # Right wall
-					if (y+1)*SIZE_OF_BLOCK > player.y > (y+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 and (x+1)*SIZE_OF_BLOCK > player.x > x*SIZE_OF_BLOCK:
+					if ypmult > player.y > ypmult-QUAD_OF_BLOCK and xpmult > player.x > xmult:
 						is_collision = True # Lower wall
-					if (y+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 > player.y > y*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2 and (x+1)*SIZE_OF_BLOCK-SIZE_OF_BLOCK/4 > player.x > x*SIZE_OF_BLOCK+SIZE_OF_BLOCK/2:
+					if ypmult-QUAD_OF_BLOCK > player.y > ymult+HALF_OF_BLOCK and xpmult-QUAD_OF_BLOCK > player.x > xmult+HALF_OF_BLOCK:
 						is_collision = True # Dot in center
-					scr.blit(LRI,    (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
+					scr.blit(LRI,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 				else:
-					scr.blit(EMPTY,  (j*SIZE_OF_BLOCK-player.x+WIDTH//2,i*SIZE_OF_BLOCK-player.y+HEIGHT//2))
+					scr.blit(EMPTY,  (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 		if is_collision:
-			# running = False
-			pg.draw.rect(scr,RED,(0,0,10,10))
-			is_collision = False
+			running = False
+			# pg.draw.rect(scr,RED,(0,0,10,10))
+			# is_collision = False
 		# for x in range(len(game_map)):
 		# 	for y in range(len(game_map[x])):
 		# 		if game_map[x][y] != '0':
-		# 			if (x+1)*SIZE_OF_BLOCK > player.y > x*SIZE_OF_BLOCK and (y+1)*SIZE_OF_BLOCK > player.x > y*SIZE_OF_BLOCK:
+		# 			if xpmult > player.y > xmult and ypmult > player.x > ymult:
 		# 				running = False
 
 		player.render(scr)
 		pg.display.flip()
+
 
 if __name__ == '__main__':
 	main()
