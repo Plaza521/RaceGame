@@ -27,16 +27,28 @@ def main():
 					scr.blit(FILLED,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
 									SIZE_OF_BLOCK,SIZE_OF_BLOCK))
 				elif game_map[i][j]=='2':
-					scr.blit(LL,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+					scr.blit(LLO,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
 								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
 				elif game_map[i][j]=='3':
-					scr.blit(UL,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+					scr.blit(ULO,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
 								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
 				elif game_map[i][j]=='4':
-					scr.blit(UR,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+					scr.blit(URO,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
 								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
 				elif game_map[i][j]=='5':
-					scr.blit(LR,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+					scr.blit(LRO,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
+				elif game_map[i][j]=='6':
+					scr.blit(LLI,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
+				elif game_map[i][j]=='7':
+					scr.blit(ULI,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
+				elif game_map[i][j]=='8':
+					scr.blit(URI,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
+								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
+				elif game_map[i][j]=='9':
+					scr.blit(LRI,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
 								SIZE_OF_BLOCK,SIZE_OF_BLOCK))
 				else:
 					scr.blit(EMPTY,(j*SIZE_OF_BLOCK,i*SIZE_OF_BLOCK,
