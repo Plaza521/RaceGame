@@ -1,6 +1,7 @@
 import pygame as pg
 from car import Car
 from map import game_map
+import other
 from settings import *
 
 def main():
@@ -11,6 +12,7 @@ def main():
 	clk = pg.time.Clock()
 	running = True
 	player = Car((SIZE_OF_BLOCK*1.5,SIZE_OF_BLOCK*1.5))
+	timer = other.Timer(scr)
 	is_collision = False
 	while running:
 		clk.tick(FPS)
@@ -31,6 +33,14 @@ def main():
 					scr.blit(FILLED, (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 					if ypmult > player.y > ymult and xpmult > player.x > xmult:
 						is_collision = True
+				elif game_map[i][j]=='S':
+					scr.blit(START, (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
+					if ypmult > player.y > ymult and xpmult > player.x > xmult:
+						timer.start()
+				elif game_map[i][j]=='F':
+					scr.blit(FINISH, (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
+					if ypmult > player.y > ymult and xpmult > player.x > xmult:
+						timer.finish()
 				elif game_map[i][j]=='2':
 					scr.blit(LLO,    (xmult-player.x+H_WIDTH,ymult-player.y+H_HEIGHT))
 					if ypmult - QUAD_OF_BLOCK > player.y > ymult + QUAD_OF_BLOCK and xpmult - QUAD_OF_BLOCK > player.x > xmult + QUAD_OF_BLOCK:
@@ -106,8 +116,9 @@ def main():
 		# 		if game_map[x][y] != '0':
 		# 			if xpmult > player.y > xmult and ypmult > player.x > ymult:
 		# 				running = False
-
+		timer.tick()
 		player.render(scr)
+		timer.render()
 		pg.display.flip()
 
 

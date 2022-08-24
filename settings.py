@@ -38,9 +38,16 @@ LLI    = pg.image.load('img/6.bmp')
 ULI    = pg.image.load('img/7.bmp')
 URI    = pg.image.load('img/8.bmp')
 LRI    = pg.image.load('img/9.bmp')
+START  = pg.image.load('img/Start.bmp')
+FINISH = pg.image.load('img/Finish.bmp')
 
 
 # Map settings
 SIZE_OF_BLOCK = 40
 HALF_OF_BLOCK = SIZE_OF_BLOCK / 2
 QUAD_OF_BLOCK = SIZE_OF_BLOCK / 4
+
+# Timer settings
+TIMER_COLOR      = RED
+TIMER_SIZE       = 30
+TIMER_FONT_NAME  = None
